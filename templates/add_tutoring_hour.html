@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Add Tutoring Hours{% endblock title %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Add Tutoring Hours</h2>
+
+    <p>Enter your weekly tutoring availability below.</p>
+
+    <form method="post"> {# submit info to Django #}
+        {% csrf_token %} {# protection across cross-site forgery #}
+
+        {{ form.as_p }} {# display TutoringHourForm #}
+
+        <button type="submit" class="btn btn-primary"> {# submit form #}
+            Save Tutoring Hours
+        </button>
+    </form>
+    <a href="{% url 'home' %}"> {# back to homepage #}
+        Back to Tutoring Schedule
+    </a>
+</div>
+{% endblock content %}

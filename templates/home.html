@@ -14,4 +14,49 @@ Hi {{ user.username }}! You are {{ user.age }} years old.
 <a href="{% url 'login' %}">Log In</a> |
 <a href="{% url 'signup' %}">Sign Up</a>
 {% endif %}
+
+<h2>CS Tutoring Schedule</h2>
+{% if is_ta %}
+    <a href="{% url 'add_tutoring_hour' %}"
+    class="btn btn-pimary mb-3">
+    Add Tutoring Hours
+    </a>
+    {% endif %}
+
+    
+<p>Find available tutoring hours for Computer Science courses.</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Teaching Assistant</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {# loops through all tutoring hours #}
+        {% for hour in tutoring_hours %}
+        <tr>
+            <td>{{ hour.day }}</td>
+            {# retrieve TA's username #}
+            <td>
+                <a href="{% url 'ta_detail' hour.ta.pk %}"> {# create a link to TA's detail page, specific TA #}
+                    {{ hour.ta.user.username }} {# clickable TA profile #}
+                </a>
+            </td>
+            {# time:"g:i A" formats our time #}
+            <td>{{ hour.start_time|time:"g:i A" }}</td>
+            <td>{{ hour.end_time|time:"g:i A" }}</td>
+        </tr>
+        {# display empty when no tutoring hours #}
+        {% empty %}
+        <tr>
+            <td coldpan="4">No tutoring hours are currently available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock content %}

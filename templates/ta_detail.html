@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %} TA Profile{% endblock title %} 
+
+{% block content %}
+
+<h2>{{ ta.user.username }}</h2>
+
+<h3>Courses Available for Tutoring</h3>
+
+<ul>
+    {% for course in ta.courses.all %}
+        <li>{{ course.code }} - {{course.name }}</li>
+    {% empty %}
+        <li>No courses listed yet.</li>
+    {% endfor %}
+</ul>
+
+<h3>Weekly Tutoring Hours</h3>
+
+<ul>
+    {% for hour in ta.tutoring_hours.all %}
+    <li>
+        {{ hour.day }}:
+        {{ hour.start_time|time:"g:i A"}}
+        - 
+        {{ hour.end_time|time:"g:i A"}}
+    </li>
+    {% empty %}
+        <li>No tutoring hours listed.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'home %'}">Back to Tutoring Schedule</a>
+
+{% endblock content %}
