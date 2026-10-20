@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %} TA Profile{% endblock title %} 
+{% block title %}TA Profile{% endblock title %} 
 
 {% block content %}
 
-<h2>{{ ta.user.username }}</h2>
+<h2 style="padding: 2rem; font-family: 'Avro', 'Poppins', 'Railway';">Hi! I'm {{ ta.user.username }}</h2>
 
-<h3>Courses Available for Tutoring</h3>
+<h3 style="font-family: 'Avro', 'Poppins', 'Railway';">Courses Available for Tutoring</h3>
 
 <ul>
     {% for course in ta.courses.all %}
@@ -16,7 +16,7 @@
     {% endfor %}
 </ul>
 
-<h3>Weekly Tutoring Hours</h3>
+<h3 style="font-family: 'Avro', 'Poppins', 'Railway';">Weekly Tutoring Hours</h3>
 
 <ul>
     {% for hour in ta.tutoring_hours.all %}
@@ -31,6 +31,6 @@
     {% endfor %}
 </ul>
 
-<a href="{% url 'home %'}">Back to Tutoring Schedule</a>
+<a href="{% url 'home' %}" style="text-decoration-style: dotted; color:#31718a"> &lt;-- Back to Tutoring Schedule</a>
 
 {% endblock content %}

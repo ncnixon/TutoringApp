@@ -1,55 +1,55 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock title %}
+{% block title %}TutorMePlease{% endblock title %}
 
 {% block content %}
 {% if user.is_authenticated %}
-Hi {{ user.username }}! You are {{ user.age }} years old.
-<form action="{% url 'logout' %}" method="post">
+<p style="margin: 0; padding-top: 1rem; padding-bottom: 1rem;">Hi {{ user.username }}! You are {{ user.age }} years old.</p>
+<form action="{% url 'logout' %}" method="post" style="padding-bottom: 2rem">
     {% csrf_token %}
-    <button type="submit">Log Out</button>
+    <button type="submit" style="background-color: #fdf1d8; color: #082434; border-color: #082434;">Log Out</button>
 </form>
 {% else %}
-<p>You are not logged in</p>
-<a href="{% url 'login' %}">Log In</a> |
-<a href="{% url 'signup' %}">Sign Up</a>
+<p style="padding-top: 1rem">You are not logged in</p>
+<a href="{% url 'login' %}" style="text-decoration-style: dotted; color:#31718a">Log In</a> |
+<a href="{% url 'signup' %}" style="text-decoration-style: dotted; color:#31718a">Sign Up</a>
 {% endif %}
 
-<h2>CS Tutoring Schedule</h2>
+<h2 style="padding-bottom: 1rem; padding-top: 1rem; font-family: 'Avro', 'Poppins', 'Railway';">CS Tutoring Schedule</h2>
 {% if is_ta %}
     <a href="{% url 'add_tutoring_hour' %}"
-    class="btn btn-pimary mb-3">
-    Add Tutoring Hours
+    class="btn btn-pimary mb-3" style="color: #a6cbd3; background-color: #4f8fa8; margin: 0; padding: 5px; border-radius: 12px">
+    + Add Tutoring Hours
     </a>
     {% endif %}
 
     
 <p>Find available tutoring hours for Computer Science courses.</p>
 
-<table class="table table-striped">
+<table class="table table-striped" style="border-style: dashed; border-color: #082434;">
     <thead>
         <tr>
-            <th>Day</th>
-            <th>Teaching Assistant</th>
-            <th>Start Time</th>
-            <th>End Time</th>
+            <th style="background-color: #fdf1d8; color:#082434; font-family: 'Avro', 'Poppins', 'Railway';">Day</th>
+            <th style="background-color: #fdf1d8; color:#082434; font-family: 'Avro', 'Poppins', 'Railway';">Teaching Assistant</th>
+            <th style="background-color: #fdf1d8; color:#082434; font-family: 'Avro', 'Poppins', 'Railway';">Start Time</th>
+            <th style="background-color: #fdf1d8; color:#082434; font-family: 'Avro', 'Poppins', 'Railway';">End Time</th>
         </tr>
     </thead>
 
-    <tbody>
+    <tbody style="background-color: #fdf1d8; color:#082434;">
         {# loops through all tutoring hours #}
         {% for hour in tutoring_hours %}
         <tr>
-            <td>{{ hour.day }}</td>
+            <td style="background-color: #fdf1d8; color:#082434;">{{ hour.day }}</td>
             {# retrieve TA's username #}
-            <td>
-                <a href="{% url 'ta_detail' hour.ta.pk %}"> {# create a link to TA's detail page, specific TA #}
+            <td style="background-color: #fdf1d8; color:#082434;">
+                <a href="{% url 'ta_detail' hour.ta.pk %}" style="text-decoration-style: dotted; color:#4f8fa8"> {# create a link to TA's detail page, specific TA #}
                     {{ hour.ta.user.username }} {# clickable TA profile #}
                 </a>
             </td>
             {# time:"g:i A" formats our time #}
-            <td>{{ hour.start_time|time:"g:i A" }}</td>
-            <td>{{ hour.end_time|time:"g:i A" }}</td>
+            <td style="background-color: #fdf1d8; color:#082434;">{{ hour.start_time|time:"g:i A" }}</td>
+            <td style="background-color: #fdf1d8; color:#082434;">{{ hour.end_time|time:"g:i A" }}</td>
         </tr>
         {# display empty when no tutoring hours #}
         {% empty %}
