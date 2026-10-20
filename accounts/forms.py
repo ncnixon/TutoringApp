@@ -14,7 +14,7 @@ class CustomUserCreationForm(UserCreationForm):
         queryset=Course.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False,
-        label="Courses you can tutor"
+        label="Courses You Can Tutor"
     )
     class Meta:
         model = CustomUser

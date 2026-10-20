@@ -5,21 +5,21 @@
 {% block content %}
 
 <div class="container mt-4">
-    <h2>Add Tutoring Hours</h2>
+    <h2 style="font-family: 'Avro', 'Poppins', 'Railway';">Add Tutoring Hours</h2>
 
-    <p>Enter your weekly tutoring availability below.</p>
+    <p>Enter your weekly tutoring availability below. Please use 00:00 - 24:00.</p>
 
-    <form method="post"> {# submit info to Django #}
+    <form method="post" style="padding-bottom: 1rem;"> {# submit info to Django #}
         {% csrf_token %} {# protection across cross-site forgery #}
 
         {{ form.as_p }} {# display TutoringHourForm #}
 
-        <button type="submit" class="btn btn-primary"> {# submit form #}
+        <button type="submit" class="btn btn-primary" style="color: #a6cbd3; background-color: #4f8fa8; margin: 0; padding: 7px; border-radius: 12px; border-style: none;"> {# submit form #}
             Save Tutoring Hours
         </button>
     </form>
-    <a href="{% url 'home' %}"> {# back to homepage #}
-        Back to Tutoring Schedule
+    <a href="{% url 'home' %}"style="text-decoration-style: dotted; color:#31718a"> {# back to homepage #}
+        &lt;-- Back to Tutoring Schedule
     </a>
 </div>
 {% endblock content %}
