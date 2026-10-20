@@ -1,2 +1,7 @@
 db.sqlite3
 .venv/
+.venv-mac/
+venv-1/
+__pycache__/
+*.pyc
+.vscode/
